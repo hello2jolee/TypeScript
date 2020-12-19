@@ -1,0 +1,1 @@
+# 기본 유형  _(Basic Types)_
