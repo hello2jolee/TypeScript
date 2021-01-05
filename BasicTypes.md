@@ -1,31 +1,31 @@
 # 기본 유형  _(Basic Types)_
 
-프로그램들이 유용하기 위해서는, 우리는 가장 간단한 데이터 단위(숫자, String, 구조, Boolean 기타 등등)를 사용할 수 있어야 합니다. 
-TypeScript에서는, 이를 위해 열거 형 몇 개는 추가한 것과 더불어, JavaScript에서 예상하는 것과 동일한 유형을 지원합니다.
+프로그램이 유용하기 위해서는, 사용자가 가장 간단한 데이터 단위(숫자, String, 구조, Boolean 기타 등등)를 사용할 수 있어야 합니다. 
+TypeScript는, JavaScript에서 지원하는 유형들과 더불어 도음이 될만한 열거 형들을 추가로 지원합니다.
 
 ## Boolean
 * 가장 기본적인 데이터 유형은 간단한 참/거짓 값이며, JavaScript와 TypeScript에서 `boolean` 이라고 부릅니다.
 ``` typescript
-let isDone : boolean = false;
+let isDone: boolean = false;
 ```
 
 ## Number
-* JavaScript에서와 마찬가지로, TypeScript의 모든 숫자는 부동 소수점 값 또는 BigInteger입니다. 부동 소수점 숫자는 `number`, BigInteger는 `bigint`라는 유형을 얻습니다. 추가적으로 16진수와 10진수 리터럴 외에도 TypeScript는 ECMAScript 2015에 도입 된 이진 및 8 진수 리터럴도 지원합니다.
+* JavaScript에서와 마찬가지로, TypeScript의 모든 숫자는 부동 소수점 값 또는 BigInteger입니다. 부동 소수점 숫자는 `number`, BigInteger는 `bigint`라는 유형을 가집니다. 추가적으로 16진수와 10진수 리터럴 외에도 TypeScript는 ECMAScript 2015에 도입 된 이진 및 8 진수 리터럴을 지원합니다.
 ``` typescript
-let decimal : number = 6;
-let hex : number = 0xf00d;
-let binary : number = 0b1010;
-let octal : number = 0o744;
-let big : bigint = 100n;
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+let big: bigint = 100n;
 ```
 
 ## String
-* 웹 페이지와 서버를 위해 JavaScript로 프로그램을 만드는 또 다른 근본적인 부분은 텍스트 데이터로 작업하는 것입니다. 다른 언어에서와 마찬가지로 이러한 텍스트 데이터 유형을 참조하기 위해 유형 문자열을 사용합니다. JavaScript와 마찬가지로 TypeScript는 큰 따옴표 `(")` 또는 작은 따옴표 `(')`를 사용하여 문자열 데이터를 묶습니다.
+* 웹 페이지와 서버를 위해 JavaScript로 프로그램을 작성하는 또 다른 근본적인 이유는 텍스트 데이터로 작업하기 위해서입니다. 다른 언어에서와 마찬가지로 이러한 텍스트 데이터 유형을 참조하기 위해 유형 문자열을 사용합니다. JavaScript와 마찬가지로 TypeScript는 큰 따옴표 `(")` 또는 작은 따옴표 `(')`를 사용하여 문자열 데이터를 묶습니다.
 ``` typescript
 let color : string = "blue";
 color = 'red;
 ```
-* 여러 줄에 걸쳐 있고 표현식이 포함 된 템플릿 문자열을 사용할 수도 있습니다. 이러한 문자열은 역 따옴표 / 역 따옴표 문자로 둘러싸여 있으며 포함 된 표현식은 `$ {expr}` 형식입니다. 
+* 여러 줄에 걸쳐 있고 표현식이 포함 된 템플릿 문자열을 사용할 수도 있습니다. 이러한 문자열은 역 따옴표 문자로 둘러싸여 있으며 포함 된 표현식은 `$ {expr}` 형식입니다. 
 
 ``` typescript
 let fullName : string = `Bob Bobbington`
@@ -129,3 +129,73 @@ let colorName : string = Color[2];
 // 'Green'을 출력한다
 console.log(colorName);
 ```
+## Unknown(알 수 없음)
+* 응용 프로그램을 작성할 때 모르는 변수 유형을 설명해야 할 수도 있습니다. 이러한 값은 동적 콘텐츠(예 : 사용자로부터) 또는 API의 모든 값을 의도적으로 수락하기를 원할 수 있습니다. 이 경우 컴파일러와 미래의 독자에게 이 변수가 무엇이든 될 수 있음을 알려주는 유형을 제공하고 싶으므로 `unknown` 유형을 제공합니다. 
+
+``` typeScript
+let notSure : unknown = 4;
+notSure = "maybe a string instead";
+
+notSure = false; // 가능, 확실한 boolean
+```
+* 알 수 없는 유형의 변수가 있는 경우, `typeof` 검사, 비교 검사 또는 이후 장에서 설명 할 고급 유형 보호를 수행하여 보다 구체적인 변수로 좁힐 수 있습니다.
+ ``` typeScript
+ declare const maybe: unknown;
+ // 'maybe'는 string, object, boolean, undefined 또는 다른 유형 일 수 있습니다.
+ const aNumber : number = maybe; // 'unknown'은 'number' 유형으로 선언 할 수 없습니다.
+
+ if(maybe === true) {
+     // TypeScript는 'maybe'가 boolean 유형이라는 것을 알고 있습니다.
+     const aBoolean: boolean = maybe;
+     // 그러므로, string 유형이 될 수 없습니다.
+     const aString: string = maybe; // 'boolean' 유형은 'string' 유형으로 선언 할 수 없습니다.
+ }
+
+ if(typeof maybe === 'string') {
+     // TypeScript는 'maybe'가 string 유형이라는 것을 알고 있습니다.
+     const aString: string = maybe;
+     // 그러므로, boolean 유형이 될 수 없습니다.
+     const aBoolean: boolean = maybe; // 'string' 유형은 'boolean' 유형으로 선언 할 수 없습니다.
+ }
+ ```
+
+ ## Any(어떤)
+ * 일부 상황에서는 모든 유형 정보를 사용할 수 없거나 해당 선언에 부적절한 노력이 필요합니다. TypeScript 또는 타사 라이브러리 없이 작성된 코드의 값에 대해 이러한 문제가 발생할 수 있습니다. 이러한 경우 유형 검사를 `opt-out` 할 수 있습니다. 이를 위해 이러한 값에 `any` 유형으로 레이블을 지정합니다.
+ ```typeScript
+ declare function getValue(key: string): any;
+ // OK, 'getValue'의 반환 값이 확인되지 않았습니다.
+ const str: string = getValue("myString");
+ ```
+* `any` 유형은 기존 JavaScript와 함께 작업하는 강력한 방법으로, 컴파일하는 동안 점차적으로 유형 검사를 opt-in 밒 opt-out 할 수 있습니다. `unknown` 유형과 달리 `any` 유형의 변수는 존재하지 않는 속성을 포함하여 임의의 속성에 액세스 할 수 있습니다. 이러한 속성에는 함수가 포함되며 TypeScript 해당 존재 또는 유형을 확인하지 않습니다.
+
+```typeScript
+let looselyTyped: any = 4;
+// OK, ifItExists는 런타임에 존재할 수 있습니다.
+looselyTyped.ifItExists();
+// OK, toFixed가 존재합니다 (하지만 컴파일러는 확인하지 않습니다)
+looselyTyped.toFixed();
+
+let stricklyTyped: unknown = 4;
+strictlyTyped.toFixed(); // Object는 'unknown' 유형입니다.
+```
+* `any`는 계속해서 객체를 통해 전파됩니다:
+```typeScript
+let looselyTyped: any = {};
+let d = looselyTyped.a.b.c.d;
+// ^ = let d: any
+```
+* 결국, `any`의 모든 편의는 유형 안전성을 잃는 대가로 온다는 것을 기억하십시오. 유형 안전성은 TypeScript를 사용하는 주요 동기 중 하나이며 필요하지 않은 경우 `any` 사용을 피해야합니다.
+
+ ## Void (빈)
+ * `void`는 `any`의 반대와 비슷합니다 : 어떤 타입도 전혀 가지지 않습니다. 일반적으로 값을 반환하지 않는 함수의 반환 유형으로 볼 수 있습니다.
+ ```typeScript
+ function warnUser(): void {
+     console.log("This is my warning messasge")
+ }
+ ```
+ * `void` 유형의 변수를 선언하는 것은 `null` (`--strictNullChecks`가 지정되지 않은 경우에만 다음 섹션 참조) 또는 `unknown` 변수만 할당할 수 있기 때문에 유용하지 않습니다:
+ ```typeScript
+ let unusable: void = undefined;
+ // `--strictNullChecks`이 주어지지 않아도 괜찮습니다.
+ unusable = null;
+ ```
