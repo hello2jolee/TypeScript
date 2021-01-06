@@ -199,3 +199,55 @@ let d = looselyTyped.a.b.c.d;
  // `--strictNullChecks`이 주어지지 않아도 괜찮습니다.
  unusable = null;
  ```
+
+ ## Null and Undefined
+ * TypeScript에서는 `undefined`와 `null` 둘 다 실제로 각각 `undefined`와 `null`이라는 유형을 가지고 있습니다. `void` 처럼, 그 자체로는 그다지 유용하지 않습니다.
+  ```typeScript
+  // 이 변수에 할당 할 수 있는 것은 많지 않습니다!
+  let u: undefined = undefined;
+  let n: null = null;
+   ```
+* 기본적으로 `null`과 `undefined`는 다른 모든 유형의 하위 유형입니다. 즉, `number`와 같은 것에 `null`과 `undefined`를 할당 할 수 있습니다.
+* 그러나 `--strictNullChecks` 플래그를 사용할 때 `null`과 `undefined`는 `unknown`, `any` 및 해당 유형에만 할당 할 수 있습니다(한 가지 예외는 `undefined`는 `void`에도 할당 할 수 있다는 점입니다). 이렇게 하면 많은 일반적인 오류를 방지할 수 있습니다. `string`, `null` 또는 `undefined`를 전달하려는 경우 `string | null | undefined` 공용체 유형을 사용할 수 있습니다.
+* 공용체 유형은 이후 장에서 다룰 고급 주제입니다.
+    * 참고: 가능하면 `--strictNullChecks`를 사용하는 것을 권장하지만, 핸드북의 목을 위해 이 기능이 꺼져있다고 가정합니다.
+
+## Number
+* `never` 유형은 발생하지 않는 값 유형을 나타냅니다. 예를 들어, `never`는 항상 예외를 발생시키는 함수 표현식 또는 화살표 함수 표현식 또는 반환하지 않는 표현식의 반환 유형입니다. 변수는 참일 수 없는 유형 가드에 의해 좁혀지면 유형 `never`도 획득합니다.
+* `never` 유형은 모든 유형의 하위 유형이며 모든 유형에 할당 할 수 있습니다. 그러나 어떤 유형도 `never`의 하위 유형이 아니거나 `never`에 할당 할 수 없습니다(`never` 자체 제외). `any` 조차도 `never`에게 할당 할 수 없습니다.
+* `never`를 반환하는 함수의 몇 가지 예 :
+
+```typeScript
+// never를 반환하는 함수에는 도달 가능한 끝 점이 없어야 합니다.
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// 유추 된 반환 유형은 never 입니다.
+function fail() {
+    return error("Something failed");
+}
+
+// never를 반환하는 함수에는 도달 가능한 끝 점이 없어야 합니다.
+function infiniteLoop(): never {
+    while(true) {}
+}
+```
+
+## Object
+* `object`는 기본이 아닌 유형을 나타내는 유형입니다. 즉, `number`, `string`, `boolean`, `bigint`, `symbol`, `null` 또는 `undefined`가 아닌 것입니다.
+* `object` 유형을 통해, `Object.create`와 같은 API들이 더 잘 표현 될 수 있습니다. 예를 들면 : 
+
+``` typeScript
+declare function create(o: object | null): void;
+
+// OK
+create({prop: 0}),
+create(null);
+
+create(42); // '42' 유형의 값은 'object | null' 파라미터에 할당 할 수 없습니다.
+create("string") // '"string"' 유형의 값은 'object | null' 파라미터에 할당 할 수 없습니다.
+create(false) // 'false' 유형의 값은 'object | null' 파라미터에 할당 할 수 없습니다.
+create(undefined) // 'undefined' 유형의 값은 'object | null' 파라미터에 할당 할 수 없습니다.
+```
+* 일반적으로는, 이것을 사용할 필요가 없습니다.
