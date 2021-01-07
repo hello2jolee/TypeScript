@@ -459,7 +459,7 @@ unusable = <span class="hljs-literal">null</span>;
 </ul>
 </li>
 </ul>
-<h2 id="number">Number</h2>
+<h2 id="never">Never</h2>
 <ul>
 <li><code>never</code> &#xC720;&#xD615;&#xC740; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xAC12; &#xC720;&#xD615;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4;, <code>never</code>&#xB294; &#xD56D;&#xC0C1; &#xC608;&#xC678;&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0A4;&#xB294; &#xD568;&#xC218; &#xD45C;&#xD604;&#xC2DD; &#xB610;&#xB294; &#xD654;&#xC0B4;&#xD45C; &#xD568;&#xC218; &#xD45C;&#xD604;&#xC2DD; &#xB610;&#xB294; &#xBC18;&#xD658;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xD45C;&#xD604;&#xC2DD;&#xC758; &#xBC18;&#xD658; &#xC720;&#xD615;&#xC785;&#xB2C8;&#xB2E4;. &#xBCC0;&#xC218;&#xB294; &#xCC38;&#xC77C; &#xC218; &#xC5C6;&#xB294; &#xC720;&#xD615; &#xAC00;&#xB4DC;&#xC5D0; &#xC758;&#xD574; &#xC881;&#xD600;&#xC9C0;&#xBA74; &#xC720;&#xD615; <code>never</code>&#xB3C4; &#xD68D;&#xB4DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li><code>never</code> &#xC720;&#xD615;&#xC740; &#xBAA8;&#xB4E0; &#xC720;&#xD615;&#xC758; &#xD558;&#xC704; &#xC720;&#xD615;&#xC774;&#xBA70; &#xBAA8;&#xB4E0; &#xC720;&#xD615;&#xC5D0; &#xD560;&#xB2F9; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xC5B4;&#xB5A4; &#xC720;&#xD615;&#xB3C4; <code>never</code>&#xC758; &#xD558;&#xC704; &#xC720;&#xD615;&#xC774; &#xC544;&#xB2C8;&#xAC70;&#xB098; <code>never</code>&#xC5D0; &#xD560;&#xB2F9; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;(<code>never</code> &#xC790;&#xCCB4; &#xC81C;&#xC678;). <code>any</code> &#xC870;&#xCC28;&#xB3C4; <code>never</code>&#xC5D0;&#xAC8C; &#xD560;&#xB2F9; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
@@ -496,9 +496,45 @@ create(<span class="hljs-string">&quot;string&quot;</span>) <span class="hljs-co
 create(<span class="hljs-literal">false</span>) <span class="hljs-comment">// &apos;false&apos; &#xC720;&#xD615;&#xC758; &#xAC12;&#xC740; &apos;object | null&apos; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC5D0; &#xD560;&#xB2F9; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
 create(<span class="hljs-literal">undefined</span>) <span class="hljs-comment">// &apos;undefined&apos; &#xC720;&#xD615;&#xC758; &#xAC12;&#xC740; &apos;object | null&apos; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC5D0; &#xD560;&#xB2F9; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
 </code></pre>
+<hr>
 <ul>
-<li>&#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C;&#xB294;, &#xC774;&#xAC83;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C;&#xB294;, &#xC774;&#xAC83;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.<h2 id="type-assertions">Type assertions</h2>
+&#xB54C;&#xB85C;&#xB294; TypeScript&#xBCF4;&#xB2E4; &#xAC12;&#xC5D0; &#xB300;&#xD574; &#xB354; &#xB9CE;&#xC774; &#xC54C;&#xAC8C;&#xB418;&#xB294; &#xC0C1;&#xD669;&#xC5D0; &#xCC98;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; &#xC774;&#xB294; &#xC77C;&#xBD80; &#xC5D4;&#xD2F0;&#xD2F0;&#xC758; &#xC720;&#xD615;&#xC774; &#xD604;&#xC7AC; &#xC720;&#xD615;&#xBCF4;&#xB2E4; &#xB354; &#xAD6C;&#xCCB4;&#xC801; &#xC77C; &#xC218; &#xC788;&#xC74C;&#xC744; &#xC54C;&#xACE0; &#xC788;&#xC744; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><u>Type assertions</u>&#xB294; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xC5D0;&#xAC8C; &quot;&#xC800;&#xB97C; &#xBBFF;&#xC73C;&#xC138;&#xC694;. &#xC81C;&#xAC00; &#xD558;&#xB294; &#xC77C;&#xC744; &#xC54C;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.&quot;&#xB77C;&#xACE0; &#xB9D0;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;. Type Assertions&#xB294; &#xB2E4;&#xB978; &#xC5B8;&#xC5B4;&#xC758; &#xC720;&#xD615; &#xCE90;&#xC2A4;&#xD2B8;&#xC640; &#xBE44;&#xC2B7;&#xD558;&#xC9C0;&#xB9CC; &#xB370;&#xC774;&#xD130;&#xC758; &#xD2B9;&#xBCC4;&#xD55C; &#xAC80;&#xC0AC; &#xB610;&#xB294; &#xC7AC;&#xAD6C;&#xC131;&#xC744; &#xC218;&#xD589;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB7F0;&#xD0C0;&#xC784;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE58;&#xC9C0; &#xC54A;&#xC73C;&#xBA70; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xC5D0;&#xC11C;&#xB9CC; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. TypeScript&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB798;&#xBA38;&#xAC00; &#xD544;&#xC694;&#xD55C; &#xD2B9;&#xC218; &#xAC80;&#xC0AC;&#xB97C; &#xC218;&#xD589;&#xD588;&#xB2E4;&#xACE0; &#xAC00;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>Type assertions&#xC5D0;&#xB294; &#xB450; &#xAC00;&#xC9C0; &#xD615;&#xC2DD;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD558;&#xB098;&#xB294; <code>as</code>-syntax &#xC785;&#xB2C8;&#xB2E4;:<pre><code class="lang-typeScript"><span class="hljs-keyword">let</span> someValue: unknown = <span class="hljs-string">&quot;this is a string&quot;</span>;
+<span class="hljs-keyword">let</span> strLength: <span class="hljs-built_in">number</span> = (someValue as <span class="hljs-built_in">string</span>).length;
+</code></pre>
+</li>
+<li>&#xB610; &#xB2E4;&#xB978; &#xBC84;&#xC804;&#xC740; &quot;angle-bracket&quot; syntax &#xC785;&#xB2C8;&#xB2E4;:<pre><code class="lang-typeScript"><span class="hljs-keyword">let</span> someValue: unknown = <span class="hljs-string">&quot;this is a string&quot;</span>
+<span class="hljs-keyword">let</span> strLength: <span class="hljs-built_in">number</span> = (&lt;<span class="hljs-built_in">string</span>&gt;someValue).length;
+</code></pre>
+</li>
+<li>&#xB450; &#xC0D8;&#xD50C;&#xC740; &#xB3D9;&#xC77C;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xB098;&#xB97C; &#xB2E4;&#xB978; &#xAC83;&#xBCF4;&#xB2E4; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC740; &#xB300;&#xBD80;&#xBD84; &#xC120;&#xD638;&#xD558;&#xB294; &#xC120;&#xD0DD;&#xD799;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; JSX&#xC640; &#xD568;&#xAED8; TypeScript&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xB54C;&#xB294; <code>as</code>-style assertion&#xB9CC; &#xD5C8;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ul>
+<h2 id="let&#xC5D0;-&#xB300;&#xD55C;-&#xCC38;&#xACE0;&#xC0AC;&#xD56D;">Let&#xC5D0; &#xB300;&#xD55C; &#xCC38;&#xACE0;&#xC0AC;&#xD56D;</h2>
+<ul>
+<li>&#xC9C0;&#xAE08;&#xAE4C;&#xC9C0; &#xC775;&#xC219;&#xD55C; JavaScript&#xC758; <code>var</code>  &#xD0A4;&#xC6CC;&#xB4DC; &#xB300;&#xC2E0; <code>let</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xC74C;&#xC744; &#xB208;&#xCE58; &#xCC44;&#xC168;&#xC744; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. <code>let</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB294; &#xC2E4;&#xC81C;&#xB85C; TypeScript&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xCD5C;&#xC2E0; JavaScript &#xAD6C;&#xC870;&#xC785;&#xB2C8;&#xB2E4;. <a href="https://www.typescriptlang.org/docs/handbook/variable-declarations.html" target="_blank">&#xBCC0;&#xC218; &#xC120;&#xC5B8;</a>&#xC5D0; &#xB300;&#xD55C; &#xD578;&#xB4DC;&#xBD81; &#xCC38;&#xC870;&#xC5D0;&#xC11C; <code>let</code> &#xBC0F; <code>const</code>&#xAC00; <code>var</code>&#xC758; &#xB9CE;&#xC740; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD574; &#xC790;&#xC138;&#xD788; &#xC54C;&#xC544;&#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </li>
+</ul>
+<h2 id="number-string-boolean-symbol&#xACFC;-object&#xC5D0;-&#xB300;&#xD558;&#xC5EC;">Number, String, Boolean, Symbol&#xACFC; Object&#xC5D0; &#xB300;&#xD558;&#xC5EC;</h2>
+<ul>
+<li><code>Number</code>, <code>String</code>, <code>Boolean</code>, <code>Symbol</code> &#xB610;&#xB294; <code>Object</code> &#xC720;&#xD589;&#xC774; &#xC704;&#xC5D0;&#xC11C; &#xAD8C;&#xC7A5;&#xD55C; &#xC18C;&#xBB38;&#xC790; &#xBC84;&#xC804;&#xACFC; &#xB3D9;&#xC77C;&#xD558;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD558;&#xACE0; &#xC2F6;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xC774;&#xB7EC;&#xD55C; &#xC720;&#xD615;&#xC740; &#xC5B8;&#xC5B4; &#xD504;&#xB9AC;&#xBBF8;&#xD2F0;&#xBE0C;&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA70; &#xC720;&#xD615;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C;&#xB294; &#xC548;&#xB429;&#xB2C8;&#xB2E4;.</li>
+</ul>
+<pre><code class="lang-typeScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">s: <span class="hljs-built_in">String</span></span>): <span class="hljs-title">String</span> </span>{
+    <span class="hljs-keyword">return</span> s.split(<span class="hljs-string">&quot;&quot;</span>).reverse().join(<span class="hljs-string">&quot;&quot;</span>);
+}
+
+reverse(<span class="hljs-string">&quot;hello world&quot;</span>);
+</code></pre>
+<ul>
+<li>&#xB300;&#xC2E0;&#xC5D0; <code>number</code>, <code>string</code>, <code>boolean</code>, <code>object</code>, <code>symbol</code> &#xC720;&#xD615;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</li>
+</ul>
+<pre><code class="lang-typeScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">return</span> s.split(<span class="hljs-string">&quot;&quot;</span>).reverse().join(<span class="hljs-string">&quot;&quot;</span>);
+}
+
+reverse(<span class="hljs-string">&quot;hello world&quot;</span>);
+</code></pre>
 
                                 
                                 </section>
@@ -542,7 +578,7 @@ create(<span class="hljs-literal">undefined</span>) <span class="hljs-comment">/
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"기본 유형","level":"1.2","depth":1,"next":{"title":"인터페이스","level":"1.3","depth":1,"path":"Interfaces.md","ref":"Interfaces.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"BasicTypes.md","mtime":"2021-01-06T12:37:36.174Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-06T12:38:32.689Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"기본 유형","level":"1.2","depth":1,"next":{"title":"인터페이스","level":"1.3","depth":1,"path":"Interfaces.md","ref":"Interfaces.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"BasicTypes.md","mtime":"2021-01-07T11:46:16.366Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-07T11:48:05.565Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

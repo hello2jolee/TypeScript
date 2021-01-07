@@ -212,7 +212,7 @@ let d = looselyTyped.a.b.c.d;
 * 공용체 유형은 이후 장에서 다룰 고급 주제입니다.
     * 참고: 가능하면 `--strictNullChecks`를 사용하는 것을 권장하지만, 핸드북의 목을 위해 이 기능이 꺼져있다고 가정합니다.
 
-## Number
+## Never
 * `never` 유형은 발생하지 않는 값 유형을 나타냅니다. 예를 들어, `never`는 항상 예외를 발생시키는 함수 표현식 또는 화살표 함수 표현식 또는 반환하지 않는 표현식의 반환 유형입니다. 변수는 참일 수 없는 유형 가드에 의해 좁혀지면 유형 `never`도 획득합니다.
 * `never` 유형은 모든 유형의 하위 유형이며 모든 유형에 할당 할 수 있습니다. 그러나 어떤 유형도 `never`의 하위 유형이 아니거나 `never`에 할당 할 수 없습니다(`never` 자체 제외). `any` 조차도 `never`에게 할당 할 수 없습니다.
 * `never`를 반환하는 함수의 몇 가지 예 :
@@ -250,4 +250,44 @@ create("string") // '"string"' 유형의 값은 'object | null' 파라미터에 
 create(false) // 'false' 유형의 값은 'object | null' 파라미터에 할당 할 수 없습니다.
 create(undefined) // 'undefined' 유형의 값은 'object | null' 파라미터에 할당 할 수 없습니다.
 ```
+
+___
 * 일반적으로는, 이것을 사용할 필요가 없습니다.
+## Type assertions
+때로는 TypeScript보다 값에 대해 더 많이 알게되는 상황에 처하게 됩니다. 일반적으로 이는 일부 엔티티의 유형이 현재 유형보다 더 구체적 일 수 있음을 알고 있을 때 발생합니다.
+* <u>Type assertions</u>는 컴파일러에게 "저를 믿으세요. 제가 하는 일을 알고 있습니다."라고 말하는 방법입니다. Type Assertions는 다른 언어의 유형 캐스트와 비슷하지만 데이터의 특별한 검사 또는 재구성을 수행하지 않습니다. 런타임에 영향을 미치지 않으며 컴파일러에서만 사용됩니다. TypeScript는 프로그래머가 필요한 특수 검사를 수행했다고 가정합니다.
+* Type assertions에는 두 가지 형식이 있습니다.
+* 하나는 `as`-syntax 입니다:
+```typeScript
+let someValue: unknown = "this is a string";
+let strLength: number = (someValue as string).length;
+```
+* 또 다른 버전은 "angle-bracket" syntax 입니다:
+```typeScript
+let someValue: unknown = "this is a string"
+let strLength: number = (<string>someValue).length;
+```
+* 두 샘플은 동일합니다. 하나를 다른 것보다 사용하는 것은 대부분 선호하는 선택힙니다. 그러나 JSX와 함께 TypeScript를 사용할 때는 `as`-style assertion만 허용됩니다.
+
+## Let에 대한 참고사항
+* 지금까지 익숙한 JavaScript의 `var`  키워드 대신 `let` 키워드를 사용하고 있음을 눈치 채셨을 것입니다. `let` 키워드는 실제로 TypeScript에서 사용할 수 있는 최신 JavaScript 구조입니다. [변수 선언](https://www.typescriptlang.org/docs/handbook/variable-declarations.html)에 대한 핸드북 참조에서 `let` 및 `const`가 `var`의 많은 문제를 해결하는 방법에 대해 자세히 알아볼 수 있습니다. 
+
+## Number, String, Boolean, Symbol과 Object에 대하여
+* `Number`, `String`, `Boolean`, `Symbol` 또는 `Object` 유행이 위에서 권장한 소문자 버전과 동일하다고 생각하고 싶을 수 있습니다. 그러나 이러한 유형은 언어 프리미티브를 참고하지 않으며 유형으로 사용해서는 안됩니다.
+
+``` typeScript
+function reverse(s: String): String {
+    return s.split("").reverse().join("");
+}
+
+reverse("hello world");
+```
+* 대신에 `number`, `string`, `boolean`, `object`, `symbol` 유형을 사용합니다.
+
+``` typeScript
+function reverse(s: string): string {
+    return s.split("").reverse().join("");
+}
+
+reverse("hello world");
+```
